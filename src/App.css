@@ -47,18 +47,21 @@ ul {
   /* Flex item to align rank to the left */
   margin-right: auto; /* Pushes everything else to the right */
   color: black;
+  min-width: 3rem;
 }
 
 .name {
   /* Center the name with flexbox */
   flex-grow: 1;
-  text-align: center;
+  text-align: left;
+  padding-left: 15rem;
   color: chocolate;
-  max-width: 4rem;
+  /* max-width: 4rem; */
 }
 
 .time {
   /* Flex item to align time to the right */
   margin-left: auto; /* Pushes everything else to the left */
   color: #28a745;
+  min-width: 3rem;
 }

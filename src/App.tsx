@@ -21,42 +21,48 @@ function App() {
     });
   }, []);
 
+  function getColor(i: number) {
+    if (i < data!.length * 0.25) {
+      return "green";
+    }
+    if (i < data!.length * 0.75) {
+      return "yellow";
+    }
+    return "red";
+  }
+
+  function getFontSize(i: number) {
+    if (i == 0) {
+      return "2rem";
+    }
+    if (i == 1) {
+      return "1.5rem";
+    }
+    return "unset";
+  }
+
   return (
     <div className="leaderboard">
       <h1>Bday Challenge</h1>
       <ul>
         {data &&
           data.map((item, i) => (
-            <li key={i} className="leaderboard-item">
-              <span className="rank">{i + 1}</span>
+            <li
+              key={i}
+              className="leaderboard-item"
+              style={{ fontSize: getFontSize(i) }}
+            >
+              <span className="rank">
+                {i + 1 < 10 ? " " + (i + 1).toString() : (i + 1).toString()}
+              </span>
               <span className="name">{item.name}</span>
-              <span className="time">{item.time.toFixed(2)}</span>
+              <span className="time" style={{ color: getColor(i) }}>
+                {item.time.toFixed(2)}
+              </span>
             </li>
           ))}
       </ul>
     </div>
-    // <div className="leaderboard">
-    //   <h1>Leaderboard</h1>
-    //   <table>
-    //     <thead>
-    //       <tr>
-    //         <th>Rank</th>
-    //         <th>Name</th>
-    //         <th>Time</th>
-    //       </tr>
-    //     </thead>
-    //     <tbody>
-    //       {data &&
-    //         data.map((item, index) => (
-    //           <tr key={index}>
-    //             <td>{index + 1}</td>
-    //             <td>{item.name}</td>
-    //             <td>{item.time.toFixed(2)}</td>
-    //           </tr>
-    //         ))}
-    //     </tbody>
-    //   </table>
-    // </div>
   );
 }
 
