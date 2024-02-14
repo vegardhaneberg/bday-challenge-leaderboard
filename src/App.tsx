@@ -1,35 +1,46 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import "./App.css";
 
-function App() {
-  const [count, setCount] = useState(0)
-
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+export interface LeaderboardItem {
+  name: string;
+  time: string;
 }
 
-export default App
+const leaderboardData: LeaderboardItem[] = [
+  { name: "Alice", time: "2m 10s" },
+  { name: "Bob", time: "2m 20s" },
+  { name: "Charlie", time: "2m 30s" },
+  { name: "Alice", time: "2m 10s" },
+  { name: "Bob", time: "2m 20s" },
+  { name: "Charlie", time: "2m 30s" },
+  { name: "Alice", time: "2m 10s" },
+  { name: "Bob", time: "2m 20s" },
+  { name: "Charlie", time: "2m 30s" },
+  { name: "Alice", time: "2m 10s" },
+  { name: "Bob", time: "2m 20s" },
+  { name: "Charlie", time: "2m 30s" },
+  { name: "Alice", time: "2m 10s" },
+  { name: "Bob", time: "2m 20s" },
+  { name: "Charlie", time: "2m 30s" },
+  { name: "Alice", time: "2m 10s" },
+  { name: "Bob", time: "2m 20s" },
+  { name: "Charlie", time: "2m 30s" },
+];
+
+function App() {
+  return (
+    <div className="leaderboard">
+      <h1>Bday Challenge leaderboard</h1>
+      <ul>
+        {leaderboardData.map((item, i) => (
+          <li key={i} className="leaderboard-item">
+            <span className="rank">{i + 1}</span>
+            <span className="name">{item.name}</span>
+            <span className="time">{item.time}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+export default App;
