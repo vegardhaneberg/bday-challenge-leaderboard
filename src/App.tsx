@@ -12,7 +12,6 @@ import {
 } from "./utils/StyledTablesHelper";
 
 export interface LeaderboardItem {
-  // id: string;
   name: string;
   time: number;
 }
@@ -23,15 +22,18 @@ function App() {
   useEffect(() => {
     const dataRef = ref(db, "items");
     get(dataRef).then((firebaseData) => {
-      const convertedData: LeaderboardItem[] = Object.values(
-        firebaseData.val()
-      );
+      let convertedData: LeaderboardItem[] = Object.values(firebaseData.val());
+      convertedData = convertedData.sort((a, b) => a.time - b.time);
       setData(convertedData);
     });
   }, []);
 
   const columns: Column<LeaderboardItem>[] = useMemo(
     () => [
+      {
+        Header: "Rank",
+        Cell: ({ row }) => row.index + 1,
+      },
       {
         Header: "Name",
         accessor: "name",
@@ -48,8 +50,9 @@ function App() {
     useTable({ columns, data });
 
   return (
-    <div>
-      <h1>Leaderboard</h1>
+    <>
+      <h1 style={{ color: "white" }}>&#127866; Leaderboard &#127866;</h1>
+
       <StyledTable {...getTableProps()}>
         <thead>
           {headerGroups.map((headerGroup) => (
@@ -77,33 +80,7 @@ function App() {
           })}
         </tbody>
       </StyledTable>
-    </div>
-    // <div>
-    //   <h1>Leaderboard</h1>
-    //   <table {...getTableProps()}>
-    //     <thead>
-    //       {headerGroups.map((headerGroup) => (
-    //         <tr {...headerGroup.getHeaderGroupProps()}>
-    //           {headerGroup.headers.map((column) => (
-    //             <th {...column.getHeaderProps()}>{column.render("Header")}</th>
-    //           ))}
-    //         </tr>
-    //       ))}
-    //     </thead>
-    //     <tbody {...getTableBodyProps()}>
-    //       {rows.map((row) => {
-    //         prepareRow(row);
-    //         return (
-    //           <tr {...row.getRowProps()}>
-    //             {row.cells.map((cell) => (
-    //               <td {...cell.getCellProps()}>{cell.render("Cell")}</td>
-    //             ))}
-    //           </tr>
-    //         );
-    //       })}
-    //     </tbody>
-    //   </table>
-    // </div>
+    </>
   );
 }
 
