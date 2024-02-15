@@ -10,6 +10,8 @@ import {
   StyledRow,
   StyledTable,
 } from "./utils/StyledTablesHelper";
+import HeaderMenu from "./components/HeaderComponent/HeaderComponent";
+import FormComponent from "./components/FormComponent/FormComponent";
 
 export interface LeaderboardItem {
   name: string;
@@ -18,6 +20,7 @@ export interface LeaderboardItem {
 
 function App() {
   const [data, setData] = useState<LeaderboardItem[]>([]);
+  const [pageState, setPageState] = useState<number>(1);
 
   useEffect(() => {
     const dataRef = ref(db, "items");
@@ -51,35 +54,50 @@ function App() {
 
   return (
     <>
-      <h1 style={{ color: "white" }}>&#127866; Leaderboard &#127866;</h1>
-
-      <StyledTable {...getTableProps()}>
-        <thead>
-          {headerGroups.map((headerGroup) => (
-            <StyledHeadRow {...headerGroup.getHeaderGroupProps()}>
-              {headerGroup.headers.map((column) => (
-                <StyledHeader {...column.getHeaderProps()}>
-                  {column.render("Header")}
-                </StyledHeader>
+      <HeaderMenu setGlobalState={setPageState} />
+      {pageState == 1 && (
+        <div style={{ marginTop: "4rem", color: "white" }}>
+          <h1>&#127866; Leaderboard &#127866;</h1>
+          <StyledTable {...getTableProps()}>
+            <thead>
+              {headerGroups.map((headerGroup) => (
+                <StyledHeadRow {...headerGroup.getHeaderGroupProps()}>
+                  {headerGroup.headers.map((column) => (
+                    <StyledHeader {...column.getHeaderProps()}>
+                      {column.render("Header")}
+                    </StyledHeader>
+                  ))}
+                </StyledHeadRow>
               ))}
-            </StyledHeadRow>
-          ))}
-        </thead>
-        <tbody {...getTableBodyProps()}>
-          {rows.map((row) => {
-            prepareRow(row);
-            return (
-              <StyledRow {...row.getRowProps()}>
-                {row.cells.map((cell) => (
-                  <StyledCell {...cell.getCellProps()}>
-                    {cell.render("Cell")}
-                  </StyledCell>
-                ))}
-              </StyledRow>
-            );
-          })}
-        </tbody>
-      </StyledTable>
+            </thead>
+            <tbody {...getTableBodyProps()}>
+              {rows.map((row) => {
+                prepareRow(row);
+                return (
+                  <StyledRow {...row.getRowProps()}>
+                    {row.cells.map((cell) => (
+                      <StyledCell {...cell.getCellProps()}>
+                        {cell.render("Cell")}
+                      </StyledCell>
+                    ))}
+                  </StyledRow>
+                );
+              })}
+            </tbody>
+          </StyledTable>
+        </div>
+      )}
+      {pageState == 2 && <FormComponent setPageState={setPageState} />}
+      {pageState == 3 && (
+        <>
+          <div>Spillere</div>
+        </>
+      )}
+      {pageState == 4 && (
+        <>
+          <div>Content!</div>
+        </>
+      )}
     </>
   );
 }

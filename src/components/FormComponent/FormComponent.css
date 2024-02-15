@@ -1,0 +1,17 @@
+.join-game-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+}
+
+@media (max-width: 768px) {
+  .formHeader {
+    font-size: 2rem;
+  }
+}
+
+.formWrapper {
+  min-width: 360px;
+}
