@@ -1,15 +1,15 @@
 import React, { Dispatch, SetStateAction, useState } from "react";
-import CustomInput from "../CustomComponents/Input/Input";
-import CustomButton from "../CustomComponents/Button/Button";
-import ErrorMessageDiv from "../CustomComponents/ErrorMessageDiv/ErrorMessageDiv";
 import "./FormComponent.css";
-import { onlyContainsNumbers } from "../../utils/BdayChallengeHelper";
 import { addAttempt } from "../../utils/FirebaseHelper";
+import CustomInput from "../CustomComponents/Input/Input";
+import ErrorMessageDiv from "../CustomComponents/ErrorMessageDiv/ErrorMessageDiv";
+import CustomButton from "../CustomComponents/Button/Button";
+import { onlyContainsNumbers } from "../../utils/BdayChallengeHelper";
 
 function FormComponent(props: {
-  setPageState: Dispatch<SetStateAction<number>>;
+  setGlobalState: Dispatch<SetStateAction<number>>;
 }) {
-  const { setPageState } = props;
+  const { setGlobalState: setPageState } = props;
   const [playerName, setPlayerName] = useState<string>("");
   const [time, setTime] = useState<string>("");
   const [showErrorMessage, setShowErrorMessage] = useState<boolean>(false);

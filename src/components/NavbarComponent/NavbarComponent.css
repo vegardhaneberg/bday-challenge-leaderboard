@@ -1,0 +1,11 @@
+.navbarMain {
+  background-color: #509274;
+  /* padding-top: env(safe-area-inset-top, 0); */
+  z-index: 1020; /* Ensure it's above other content */
+}
+.brand {
+  color: black;
+}
+.link {
+  color: black;
+}

@@ -7,7 +7,7 @@ import { getDatabase } from "firebase/database";
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyCQQmi6tSSjFpGwRk_OI-V2_EBzEMnl-ms",
+  apiKey: import.meta.env.VITE_API_KEY,
   authDomain: "bdaychallenge-da960.firebaseapp.com",
   databaseURL:
     "https://bdaychallenge-da960-default-rtdb.europe-west1.firebasedatabase.app",
