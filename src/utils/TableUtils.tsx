@@ -1,12 +1,18 @@
 import { Column } from "react-table";
 
-export interface LeaderboardItem {
+export interface Player {
   id: string;
   name: string;
   time: number;
+  birthday: string;
+  attempts: Attempt[];
+}
+export interface Attempt {
+  date: string;
+  time: number;
 }
 
-export const COLUMNS: Column<LeaderboardItem>[] = [
+export const COLUMNS: Column<Player>[] = [
   {
     Header: "Plass",
     Cell: ({ row }) => (

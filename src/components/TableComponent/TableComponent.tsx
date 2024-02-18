@@ -1,13 +1,13 @@
 import { useEffect, useMemo, useState } from "react";
 import { useTable } from "react-table";
-import { COLUMNS, LeaderboardItem } from "../../utils/TableUtils";
+import { COLUMNS, Player } from "../../utils/TableUtils";
 import "./TableComponent.css";
-import { getLeaderboardItems } from "../../utils/FirebaseHelper";
+import { getPlayers } from "../../utils/FirebaseHelper";
 
 function TableComponent() {
-  const [data, setData] = useState<LeaderboardItem[]>([]);
+  const [data, setData] = useState<Player[]>([]);
   useEffect(() => {
-    getLeaderboardItems().then((data) => setData(data));
+    getPlayers().then((data) => setData(data));
   }, []);
 
   const columns = useMemo(() => COLUMNS, []);

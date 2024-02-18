@@ -1,11 +1,16 @@
 import "./FormComponent.css";
-import { addAttempt } from "../../utils/FirebaseHelper";
+import {
+  addAttemptForExistingPlayer,
+  addAttemptForNewPlayer,
+  getPlayerByName,
+} from "../../utils/FirebaseHelper";
 import CustomInput from "../CustomComponents/Input/Input";
 import ErrorMessageDiv from "../CustomComponents/ErrorMessageDiv/ErrorMessageDiv";
 import CustomButton from "../CustomComponents/Button/Button";
 import { onlyContainsNumbers } from "../../utils/BdayChallengeHelper";
 import { useNavigate } from "react-router";
 import { useState } from "react";
+import { Attempt } from "../../utils/TableUtils";
 
 function FormComponent() {
   const [playerName, setPlayerName] = useState<string>("");
@@ -18,16 +23,24 @@ function FormComponent() {
     navigate(`/${subPath}`);
   };
 
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
     if (!onlyContainsNumbers(time)) {
       setErrorMessage("Tid må være et heltall");
       setShowErrorMessage(true);
     } else {
-      addAttempt(playerName, parseInt(time)).then(() => {
-        navigateTo("");
-      });
+      const existingPlayer = await getPlayerByName(playerName);
+      if (existingPlayer === undefined) {
+        console.log("Adding new player with attempt");
+        await addAttemptForNewPlayer(playerName, parseInt(time));
+      } else {
+        console.log("Adding attempt for existing player");
+        const newAttempt: Attempt = { time: time, date: "1. Jan" };
+        existingPlayer.attempts.push(newAttempt);
+        await addAttemptForExistingPlayer(existingPlayer);
+      }
+      navigateTo("");
     }
   }
 

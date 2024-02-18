@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
-import { LeaderboardItem } from "../../utils/TableUtils";
-import { getLeaderboardItems } from "../../utils/FirebaseHelper";
+import { Player } from "../../utils/TableUtils";
+import { getPlayers } from "../../utils/FirebaseHelper";
 import CardComponent from "../CardComponent/CardComponent";
 import "./PlayersComponent.css";
 
 function PlayersComponent() {
-  const [data, setData] = useState<LeaderboardItem[]>([]);
+  const [data, setData] = useState<Player[]>([]);
   useEffect(() => {
-    getLeaderboardItems(false).then((data) => setData(data));
+    getPlayers(false).then((data) => setData(data));
   }, []);
   return (
     <>
