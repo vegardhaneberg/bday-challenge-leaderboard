@@ -1,0 +1,29 @@
+.cardWrapper {
+  margin: 2rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 15rem;
+  height: 10rem;
+  background-color: #485965;
+  border-radius: 6%;
+  padding: 1rem;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+.cardWrapper:hover {
+  transform: scale(1.1);
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+.playerImage {
+  width: 5rem;
+  height: 5rem;
+}
+
+.playerName {
+  font-size: 2rem;
+}
+.playerBirthday {
+  font-size: 1.5rem;
+}

@@ -1,17 +1,19 @@
-import { Dispatch, SetStateAction, useState } from "react";
 import { Navbar, Container, Nav } from "react-bootstrap";
 import "./NavbarComponent.css";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
-function NavbarComponent(props: {
-  setGlobalState: Dispatch<SetStateAction<number>>;
-}) {
-  const { setGlobalState } = props;
+function NavbarComponent() {
   const [expanded, setExpanded] = useState<boolean>(false);
 
-  function handleOnClick(state: number) {
-    console.log("lol");
+  const navigate = useNavigate();
+  const navigateTo = (subPath: string) => {
+    navigate(`/${subPath}`);
+  };
+
+  function handleOnClick(subPath: string) {
     setExpanded(false);
-    setGlobalState(state);
+    navigateTo(subPath);
   }
 
   return (
@@ -23,7 +25,7 @@ function NavbarComponent(props: {
         expanded={expanded}
       >
         <Container>
-          <Navbar.Brand className="brand" onClick={() => handleOnClick(1)}>
+          <Navbar.Brand className="brand" onClick={() => navigateTo("")}>
             &#127866; Bday Challenge
           </Navbar.Brand>
           <Navbar.Toggle
@@ -32,10 +34,16 @@ function NavbarComponent(props: {
           />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-              <Nav.Link className="link" onClick={() => handleOnClick(2)}>
+              <Nav.Link
+                className="link"
+                onClick={() => handleOnClick("addchallenge")}
+              >
                 Legg til forsøk
               </Nav.Link>
-              <Nav.Link className="link" onClick={() => handleOnClick(3)}>
+              <Nav.Link
+                className="link"
+                onClick={() => handleOnClick("players")}
+              >
                 Spillere
               </Nav.Link>
             </Nav>

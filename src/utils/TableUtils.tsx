@@ -1,6 +1,7 @@
 import { Column } from "react-table";
 
 export interface LeaderboardItem {
+  id: string;
   name: string;
   time: number;
 }

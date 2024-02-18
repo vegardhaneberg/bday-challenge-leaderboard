@@ -1,19 +1,13 @@
 import { useEffect, useMemo, useState } from "react";
 import { useTable } from "react-table";
 import { COLUMNS, LeaderboardItem } from "../../utils/TableUtils";
-import { ref, get } from "firebase/database";
-import { db } from "../../firebaseConfig";
 import "./TableComponent.css";
+import { getLeaderboardItems } from "../../utils/FirebaseHelper";
 
 function TableComponent() {
   const [data, setData] = useState<LeaderboardItem[]>([]);
   useEffect(() => {
-    const dataRef = ref(db, "items");
-    get(dataRef).then((firebaseData) => {
-      let convertedData: LeaderboardItem[] = Object.values(firebaseData.val());
-      convertedData = convertedData.sort((a, b) => a.time - b.time);
-      setData(convertedData);
-    });
+    getLeaderboardItems().then((data) => setData(data));
   }, []);
 
   const columns = useMemo(() => COLUMNS, []);

@@ -1,19 +1,22 @@
-import React, { Dispatch, SetStateAction, useState } from "react";
 import "./FormComponent.css";
 import { addAttempt } from "../../utils/FirebaseHelper";
 import CustomInput from "../CustomComponents/Input/Input";
 import ErrorMessageDiv from "../CustomComponents/ErrorMessageDiv/ErrorMessageDiv";
 import CustomButton from "../CustomComponents/Button/Button";
 import { onlyContainsNumbers } from "../../utils/BdayChallengeHelper";
+import { useNavigate } from "react-router";
+import { useState } from "react";
 
-function FormComponent(props: {
-  setGlobalState: Dispatch<SetStateAction<number>>;
-}) {
-  const { setGlobalState: setPageState } = props;
+function FormComponent() {
   const [playerName, setPlayerName] = useState<string>("");
   const [time, setTime] = useState<string>("");
   const [showErrorMessage, setShowErrorMessage] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string>("");
+
+  const navigate = useNavigate();
+  const navigateTo = (subPath: string) => {
+    navigate(`/${subPath}`);
+  };
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -23,7 +26,7 @@ function FormComponent(props: {
       setShowErrorMessage(true);
     } else {
       addAttempt(playerName, parseInt(time)).then(() => {
-        setPageState(1);
+        navigateTo("");
       });
     }
   }
