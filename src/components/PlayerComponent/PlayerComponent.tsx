@@ -16,8 +16,15 @@ function PlayerComponent() {
     <>
       {player && (
         <>
-          <h1>{player.name}</h1>
-          <h2>{player.time}</h2>
+          <h1>Navn: {player.name}</h1>
+          <h2>Bursdag: {player.birthday}</h2>
+          <h2>Alle forsøk:</h2>
+          {player.attempts &&
+            player.attempts.map((attempt, i) => (
+              <div key={i}>
+                {attempt.date}: {attempt.time} sekunder
+              </div>
+            ))}
         </>
       )}
     </>
