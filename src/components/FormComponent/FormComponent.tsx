@@ -36,7 +36,7 @@ function FormComponent() {
         await addAttemptForNewPlayer(playerName, parseInt(time));
       } else {
         console.log("Adding attempt for existing player");
-        const newAttempt: Attempt = { time: time, date: "1. Jan" };
+        const newAttempt: Attempt = { time: parseInt(time), date: "1. Jan" };
         existingPlayer.attempts.push(newAttempt);
         await addAttemptForExistingPlayer(existingPlayer);
       }
