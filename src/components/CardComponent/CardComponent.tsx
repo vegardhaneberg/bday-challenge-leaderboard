@@ -5,8 +5,9 @@ function CardComponent(props: {
   playerId: string;
   name: string;
   imgPath: string;
+  birthday: string;
 }) {
-  const { playerId: id, name, imgPath } = props;
+  const { playerId: id, name, imgPath, birthday } = props;
   const navigate = useNavigate();
   const navigateTo = (subPath: string) => {
     navigate(`/${subPath}`);
@@ -16,7 +17,7 @@ function CardComponent(props: {
     <div onClick={() => navigateTo(`player/${id}`)} className="cardWrapper">
       <div>
         <p className="playerName">{name}</p>
-        <p className="playerBirthday">23. Nov</p>
+        <p className="playerBirthday">{birthday}</p>
       </div>
 
       <img src={imgPath} className="playerImage" />

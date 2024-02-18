@@ -20,6 +20,7 @@ function PlayersComponent() {
               playerId={item.id}
               name={item.name}
               imgPath="beer copy.png"
+              birthday={item.birthday}
             />
           ))}
       </div>

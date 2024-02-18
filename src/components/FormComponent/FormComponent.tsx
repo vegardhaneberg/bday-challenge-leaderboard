@@ -15,6 +15,7 @@ import { Attempt } from "../../utils/TableUtils";
 function FormComponent() {
   const [playerName, setPlayerName] = useState<string>("");
   const [time, setTime] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
   const [showErrorMessage, setShowErrorMessage] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string>("");
 
@@ -25,6 +26,11 @@ function FormComponent() {
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    if (password !== "bday") {
+      setErrorMessage("Feil passord!");
+      setShowErrorMessage(true);
+      return;
+    }
 
     if (!onlyContainsNumbers(time)) {
       setErrorMessage("Tid må være et heltall");
@@ -55,13 +61,20 @@ function FormComponent() {
             required
             placeholder="Navn"
             onChange={(e) => setPlayerName(e.target.value)}
-          />{" "}
+          />
           <CustomInput
             type="text"
             value={time}
             required
             placeholder="Tid"
             onChange={(e) => setTime(e.target.value)}
+          />
+          <CustomInput
+            type="text"
+            value={password}
+            required
+            placeholder="Passord"
+            onChange={(e) => setPassword(e.target.value)}
           />
           {showErrorMessage && <ErrorMessageDiv text={errorMessage} />}
           <CustomButton label="Legg til" variant="initial" />
