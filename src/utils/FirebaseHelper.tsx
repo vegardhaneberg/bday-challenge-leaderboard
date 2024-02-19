@@ -1,28 +1,8 @@
 import { get, ref, set } from "firebase/database";
 import { db } from "../firebaseConfig";
-import { generateGUID } from "./BdayChallengeHelper";
+import { generateGUID, getCurrentDateAsString } from "./BdayChallengeHelper";
 import { Attempt, Player } from "./TableUtils";
 
-export function getCurrentDateAsString(): string {
-  const currentDate = new Date();
-  const monthNames = [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "Jun",
-    "Jul",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec",
-  ];
-  return `${currentDate.getDate()}. ${
-    monthNames[currentDate.getMonth()]
-  } ${currentDate.getFullYear()}`;
-}
 export const addAttemptForNewPlayer = async (
   name: string,
   time: number,
@@ -47,12 +27,15 @@ export const addAttemptForNewPlayer = async (
   return await set(playerRef, newPlayer);
 };
 
-export const getPlayers = async (sortItems: boolean = true) => {
+export const getPlayers = async (
+  sortItems: boolean = true
+): Promise<Player[]> => {
   const dataRef = ref(db, "players");
   const firebaseData = await get(dataRef);
-  let convertedData: Player[] = Object.values(firebaseData.val());
-  if (sortItems) convertedData = convertedData.sort((a, b) => a.time - b.time);
-  return convertedData;
+  let players: Player[] = Object.values(firebaseData.val());
+
+  if (sortItems) players = players.sort((a, b) => a.time - b.time);
+  return players;
 };
 
 export const getPlayerByName = async (playerName: string) => {

@@ -2,13 +2,15 @@ import "./FormComponent.css";
 import {
   addAttemptForExistingPlayer,
   addAttemptForNewPlayer,
-  getCurrentDateAsString,
   getPlayerByName,
 } from "../../utils/FirebaseHelper";
 import CustomInput from "../CustomComponents/Input/Input";
 import ErrorMessageDiv from "../CustomComponents/ErrorMessageDiv/ErrorMessageDiv";
 import CustomButton from "../CustomComponents/Button/Button";
-import { onlyContainsNumbers } from "../../utils/BdayChallengeHelper";
+import {
+  getCurrentDateAsString,
+  onlyContainsNumbers,
+} from "../../utils/BdayChallengeHelper";
 import { useNavigate } from "react-router";
 import { useState } from "react";
 import { Attempt } from "../../utils/TableUtils";
