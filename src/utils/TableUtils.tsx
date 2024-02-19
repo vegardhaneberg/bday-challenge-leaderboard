@@ -12,7 +12,14 @@ export interface Attempt {
   time: number;
 }
 
-export const COLUMNS: Column<Player>[] = [
+export interface LeaderboardItem {
+  id: string;
+  name: string;
+  birthday: string;
+  bestTime: number;
+}
+
+export const COLUMNS: Column<LeaderboardItem>[] = [
   {
     Header: "Plass",
     Cell: ({ row }) => (
@@ -26,7 +33,7 @@ export const COLUMNS: Column<Player>[] = [
   },
   {
     Header: "Tid",
-    accessor: "time",
+    accessor: "bestTime",
     Cell: (row) => row.value,
   },
 ];

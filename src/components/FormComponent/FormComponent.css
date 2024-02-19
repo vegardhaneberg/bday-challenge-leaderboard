@@ -5,11 +5,22 @@
   align-items: center;
   margin-top: 50px;
 }
+.formWrapper {
+  max-width: 600px;
+}
 .formHeader {
+  color: white;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid white;
+}
+.formDescription {
   color: white;
 }
 @media (max-width: 768px) {
   .formHeader {
     font-size: 1.5rem;
+  }
+  .formDescription {
+    font-size: 1rem;
   }
 }
