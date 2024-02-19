@@ -3,12 +3,37 @@ import { db } from "../firebaseConfig";
 import { generateGUID } from "./BdayChallengeHelper";
 import { Attempt, Player } from "./TableUtils";
 
-export const addAttemptForNewPlayer = async (name: string, time: number) => {
+export function getCurrentDateAsString(): string {
+  const currentDate = new Date();
+  const monthNames = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+  return `${currentDate.getDate()}. ${
+    monthNames[currentDate.getMonth()]
+  } ${currentDate.getFullYear()}`;
+}
+export const addAttemptForNewPlayer = async (
+  name: string,
+  time: number,
+  birthday: string
+) => {
   const id = generateGUID();
   const playerRef = ref(db, `players/${id}`);
+
   const attempts: Attempt[] = [
     {
-      date: "test dato",
+      date: getCurrentDateAsString(),
       time: time,
     },
   ];
@@ -16,7 +41,7 @@ export const addAttemptForNewPlayer = async (name: string, time: number) => {
     id: id,
     name: name,
     attempts: attempts,
-    birthday: "Test bursdag",
+    birthday: birthday,
     time: time,
   };
   return await set(playerRef, newPlayer);
