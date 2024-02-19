@@ -6,6 +6,11 @@
 .brand {
   color: black;
 }
+.brand:hover {
+  cursor: pointer;
+  opacity: 0.5;
+}
+
 .link {
   color: black;
 }

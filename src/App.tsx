@@ -2,20 +2,26 @@ import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import NavbarComponent from "./components/NavbarComponent/NavbarComponent";
 import TableComponent from "./components/TableComponent/TableComponent";
-import { useState } from "react";
 import FormComponent from "./components/FormComponent/FormComponent";
+import PlayersComponent from "./components/PlayersComponent/PlayersComponent";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import PlayerComponent from "./components/PlayerComponent/PlayerComponent";
 
 function App() {
-  const [pageState, setPageState] = useState<number>(1);
-
   return (
     <>
-      <NavbarComponent setGlobalState={setPageState} />
-      <div className="mainWrapper">
-        {pageState == 1 && <TableComponent />}
-        {pageState == 2 && <FormComponent setGlobalState={setPageState} />}
-        {pageState == 3 && <>spiller side</>}
-      </div>
+      <Router>
+        <NavbarComponent />
+        <div className="mainWrapper">
+          <Routes>
+            <Route path="/" element={<TableComponent />} />
+            <Route path="/addchallenge" element={<FormComponent />} />
+            <Route path="/players" element={<PlayersComponent />} />
+            <Route path="/player/*" element={<PlayerComponent />} />
+            <Route path="*" element={<div>Page not found!</div>} />
+          </Routes>
+        </div>
+      </Router>
     </>
   );
 }
