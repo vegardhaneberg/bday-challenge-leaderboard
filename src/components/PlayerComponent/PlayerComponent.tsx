@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { getPlayer } from "../../utils/FirebaseHelper";
 import { Player } from "../../utils/TableUtils";
+import CenterCroppedImage from "../CustomComponents/CenterCroppedImage/CenterCroppedImage";
+import "./PlayerComponent.css";
 
 function PlayerComponent() {
   const location = useLocation();
@@ -16,6 +18,11 @@ function PlayerComponent() {
     <>
       {player && (
         <>
+          {(player.name === "Vegard" ||
+            player.name === "Mads" ||
+            player.name === "Kate") && (
+            <CenterCroppedImage imgPath={`/${player.name}.jpg`} size="15rem" />
+          )}
           <h1>Navn: {player.name}</h1>
           <h2>Bursdag: {player.birthday}</h2>
           <h2>Alle forsøk:</h2>
