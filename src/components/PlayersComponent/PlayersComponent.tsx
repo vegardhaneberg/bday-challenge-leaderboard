@@ -5,23 +5,17 @@ import CardComponent from "../CardComponent/CardComponent";
 import "./PlayersComponent.css";
 
 function PlayersComponent() {
-  const [data, setData] = useState<Player[]>([]);
+  const [players, setPlayers] = useState<Player[]>([]);
   useEffect(() => {
-    getPlayers(false).then((data) => setData(data));
+    getPlayers(false).then((data) => setPlayers(data));
   }, []);
   return (
     <>
       <h1>&#127866; Spillere &#127866; </h1>
       <div className="cardsWrapper">
-        {data &&
-          data.map((item, i) => (
-            <CardComponent
-              key={i}
-              playerId={item.id}
-              name={item.name}
-              imgPath="beer copy.png"
-              birthday={item.birthday}
-            />
+        {players &&
+          players.map((item, i) => (
+            <CardComponent key={i} player={item} imgPath="beer copy.png" />
           ))}
       </div>
     </>
