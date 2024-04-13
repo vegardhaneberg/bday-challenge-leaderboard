@@ -50,11 +50,11 @@ function FormComponent() {
     event.preventDefault();
 
     if (!onlyContainsNumbers(time)) {
-      setErrorMessage("Tid må være et heltall");
+      setErrorMessage("Tid må være et tall");
       setShowErrorMessage(true);
       return;
     } else {
-      await addAttemptForNewPlayer(playerName, parseInt(time), birthday);
+      await addAttemptForNewPlayer(playerName, parseFloat(time.replace(',', '.')), birthday);
     }
     navigateTo("");
   }
@@ -75,7 +75,7 @@ function FormComponent() {
         return;
       }
       const newAttempt: Attempt = {
-        time: parseInt(time),
+        time: parseFloat(time.replace(',', '.')),
         date: getCurrentDateAsString(),
       };
       existingPlayer.attempts.push(newAttempt);
