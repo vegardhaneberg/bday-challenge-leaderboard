@@ -1,6 +1,6 @@
 import { Attempt, Player, LeaderboardItem } from "./TableUtils";
 
-export const onlyContainsNumbers = (str: string) => !isNaN(parseFloat(str)) && (str.includes('.') || str.includes(','));;
+export const onlyContainsNumbers = (str: string) => !isNaN(parseFloat(str));
 
 export function generateGUID(): string {
   return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, (c) => {
