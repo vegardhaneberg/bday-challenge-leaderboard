@@ -1,0 +1,9 @@
+.graph-container {
+  min-width: 500px;
+}
+
+@media (max-width: 768px) {
+  .graph-container {
+    min-width: 100px;
+  }
+}

@@ -4,6 +4,7 @@ import { COLUMNS, LeaderboardItem } from "../../utils/TableUtils";
 import "./TableComponent.css";
 import { getPlayers } from "../../utils/FirebaseHelper";
 import { convertPlayersToLeaderboardItems } from "../../utils/BdayChallengeHelper";
+import { useNavigate } from "react-router-dom";
 
 function TableComponent() {
   const [data, setData] = useState<LeaderboardItem[]>([]);
@@ -13,6 +14,10 @@ function TableComponent() {
       setData(test);
     });
   }, []);
+  const navigate = useNavigate();
+  const navigateTo = (subPath: string) => {
+    navigate(`/${subPath}`);
+  };
 
   const columns = useMemo(() => COLUMNS, []);
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
@@ -38,7 +43,14 @@ function TableComponent() {
               <tr {...row.getRowProps()}>
                 {row.cells.map((cell) => {
                   return (
-                    <td {...cell.getCellProps()}>{cell.render("Cell")}</td>
+                    <td {...cell.getCellProps()}>
+                      <div
+                        style={{ cursor: "pointer" }}
+                        onClick={() => navigate(`player/${row.original.id}`)}
+                      >
+                        {cell.render("Cell")}
+                      </div>
+                    </td>
                   );
                 })}
               </tr>

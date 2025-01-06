@@ -10,3 +10,33 @@
   align-items: center;
   gap: 4rem;
 }
+
+.player-header {
+  font-size: 5rem;
+}
+
+@media (max-width: 768px) {
+  .player-header {
+    font-size: 3rem;
+  }
+}
+
+.player-description {
+  font-size: 2rem;
+}
+
+@media (max-width: 768px) {
+  .player-description {
+    font-size: 1.5rem;
+  }
+}
+
+.player-description-small {
+  font-size: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .player-description-small {
+    font-size: 1rem;
+  }
+}

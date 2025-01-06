@@ -10,6 +10,19 @@ export function generateGUID(): string {
   });
 }
 
+export function getTimesAndDates(player: Player): {
+  times: number[];
+  dates: string[];
+} {
+  // Map over the player's attempts to extract the times
+  const times = player.attempts.map((attempt) => attempt.time);
+
+  // Map over the player's attempts to extract the dates
+  const dates = player.attempts.map((attempt) => attempt.date);
+
+  return { times, dates };
+}
+
 export function getCurrentDateAsString(): string {
   const currentDate = new Date();
   const monthNames = [

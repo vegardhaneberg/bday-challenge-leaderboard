@@ -46,12 +46,6 @@ function NavbarComponent() {
               >
                 Spillere
               </Nav.Link>
-              <Nav.Link
-                className="link"
-                onClick={() => handleOnClick("bredvid")}
-              >
-                Bredvid 12-kamp
-              </Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Container>

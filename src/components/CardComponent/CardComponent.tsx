@@ -31,7 +31,16 @@ function CardComponent(props: { player: Player; imgPath: string }) {
 
       {player.name !== "Vegard" &&
         player.name !== "Mads" &&
-        player.name !== "Kate" && <img src={imgPath} className="playerImage" />}
+        player.name !== "Kate" &&
+        player.name !== "Sofie" &&
+        player.name !== "Larsi" &&
+        player.name !== "Katty" &&
+        player.name !== "Syver" &&
+        player.name !== "Haakon" &&
+        player.name !== "Daniel" &&
+        player.name !== "Martin" && (
+          <img src={imgPath} className="playerImage" />
+        )}
 
       {player.name === "Vegard" && (
         <CenterCroppedImage imgPath="Vegard.jpg" size="6rem" />
@@ -41,6 +50,27 @@ function CardComponent(props: { player: Player; imgPath: string }) {
       )}
       {player.name === "Kate" && (
         <CenterCroppedImage imgPath="Kate.jpg" size="6rem" />
+      )}
+      {player.name === "Sofie" && (
+        <CenterCroppedImage imgPath="Sofie.jpg" size="6rem" />
+      )}
+      {player.name === "Martin" && (
+        <CenterCroppedImage imgPath="Martin.jpg" size="6rem" />
+      )}
+      {player.name === "Larsi" && (
+        <CenterCroppedImage imgPath="Larsi.jpg" size="6rem" />
+      )}
+      {player.name === "Haakon" && (
+        <CenterCroppedImage imgPath="Haakon.jpg" size="6rem" />
+      )}
+      {player.name === "Daniel" && (
+        <CenterCroppedImage imgPath="Daniel.jpg" size="6rem" />
+      )}
+      {player.name === "Katty" && (
+        <CenterCroppedImage imgPath="Katty.jpg" size="6rem" />
+      )}
+      {player.name === "Syver" && (
+        <CenterCroppedImage imgPath="Syver.jpg" size="6rem" />
       )}
     </div>
   );
