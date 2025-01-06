@@ -46,7 +46,7 @@ function TableComponent() {
                     <td {...cell.getCellProps()}>
                       <div
                         style={{ cursor: "pointer" }}
-                        onClick={() => navigate(`player/${row.original.id}`)}
+                        onClick={() => navigateTo(`player/${row.original.id}`)}
                       >
                         {cell.render("Cell")}
                       </div>
