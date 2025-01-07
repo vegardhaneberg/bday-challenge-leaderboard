@@ -53,9 +53,14 @@ function CenterCroppedImage(props: { imgPath: string; size: string }) {
       style={
         isReady
           ? croppedImageUrl === "/beer copy.png"
-            ? { width: size, height: size }
-            : { width: size, height: size, borderRadius: "50%" }
-          : { width: size, height: size }
+            ? { width: size, height: size, alignSelf: "center" }
+            : {
+                width: size,
+                height: size,
+                borderRadius: "50%",
+                alignSelf: "center",
+              }
+          : { width: size, height: size, alignSelf: "center" }
       }
       src={croppedImageUrl}
     />

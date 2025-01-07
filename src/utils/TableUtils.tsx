@@ -7,10 +7,16 @@ export interface Player {
   time: number;
   birthday: string;
   attempts: Attempt[];
+  stats: Stat[] | undefined;
 }
 export interface Attempt {
   date: string;
   time: number;
+}
+
+export interface Stat {
+  name: string;
+  value: number;
 }
 
 export interface LeaderboardItem {

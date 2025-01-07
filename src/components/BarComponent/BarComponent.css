@@ -1,0 +1,50 @@
+.stat-bar {
+  display: flex;
+  gap: 2px;
+}
+
+.stat-square {
+  width: 20px;
+  height: 30px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+}
+
+.stat-square.filled {
+  border-color: transparent;
+}
+
+.stat-square.filled.low {
+  background-color: #dc3545;
+  box-shadow: 0 0 5px #dc3545;
+}
+
+.stat-square.filled.medium {
+  background-color: #ffc107;
+  box-shadow: 0 0 5px #ffc107;
+}
+
+.stat-square.filled.high {
+  background-color: #28a745;
+  box-shadow: 0 0 5px #28a745;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.02);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.stat-square.filled {
+  animation: pulse 1s infinite;
+}
+.stat-square.filled:last-of-type {
+  animation: pulse 1s infinite;
+}

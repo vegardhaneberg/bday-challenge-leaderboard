@@ -6,6 +6,7 @@ import CenterCroppedImage from "../CustomComponents/CenterCroppedImage/CenterCro
 import "./PlayerComponent.css";
 import GraphComponent from "../GraphComponent/GraphComponent";
 import { getBestAttempt } from "../../utils/BdayChallengeHelper";
+import BarComponent from "../BarComponent/BarComponent";
 
 function PlayerComponent() {
   const location = useLocation();
@@ -20,6 +21,7 @@ function PlayerComponent() {
       setBestAttempt(getBestAttempt(data.attempts));
     });
   }, [playerId]);
+
   return (
     <>
       {player && (
@@ -50,6 +52,7 @@ function PlayerComponent() {
               <h3 className="player-description-small">Tørre å prøve igjen</h3>
             </div>
           )}
+          <BarComponent stats={player.stats} />
         </>
       )}
     </>

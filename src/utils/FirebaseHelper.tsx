@@ -1,7 +1,7 @@
 import { get, ref, set } from "firebase/database";
 import { db } from "../firebaseConfig";
 import { generateGUID, getCurrentDateAsString } from "./BdayChallengeHelper";
-import { Attempt, Player } from "./TableUtils";
+import { Attempt, Player, Stat } from "./TableUtils";
 
 export const addAttemptForNewPlayer = async (
   name: string,
@@ -17,12 +17,27 @@ export const addAttemptForNewPlayer = async (
       time: time,
     },
   ];
+  const stats: Stat[] = [
+    {
+      name: "Bong",
+      value: 3,
+    },
+    {
+      name: "Breezer",
+      value: 3,
+    },
+    {
+      name: "Shot",
+      value: 3,
+    },
+  ];
   const newPlayer: Player = {
     id: id,
     name: name,
     attempts: attempts,
     birthday: birthday,
     time: time,
+    stats: stats,
   };
   return await set(playerRef, newPlayer);
 };
