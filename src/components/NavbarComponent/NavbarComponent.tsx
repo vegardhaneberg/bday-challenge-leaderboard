@@ -36,15 +36,18 @@ function NavbarComponent() {
             <Nav className="me-auto">
               <Nav.Link
                 className="link"
+                onClick={() => handleOnClick("players")}
+              >
+                Spillere
+              </Nav.Link>
+              <Nav.Link
+                className="link"
                 onClick={() => handleOnClick("addchallenge")}
               >
                 Legg til forsøk
               </Nav.Link>
-              <Nav.Link
-                className="link"
-                onClick={() => handleOnClick("players")}
-              >
-                Spillere
+              <Nav.Link className="link" onClick={() => handleOnClick("rules")}>
+                Regler
               </Nav.Link>
             </Nav>
           </Navbar.Collapse>

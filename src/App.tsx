@@ -19,6 +19,33 @@ function App() {
             <Route path="/players" element={<PlayersComponent />} />
             <Route path="/player/*" element={<PlayerComponent />} />
             <Route path="*" element={<div>Page not found!</div>} />
+            <Route
+              path="/rules"
+              element={
+                <div>
+                  <h1 style={{ marginBottom: "2rem" }}>
+                    &#127866; Regler &#127866;
+                  </h1>
+                  <p>
+                    Man skal chugge én halvliter pils, én breezer og én shot i
+                    valgfri rekkefølge så raskt man kan.
+                  </p>
+                  <p>
+                    Kun tradisjonell traktebong er tillatt, ingen stive
+                    varianter (sorry Mads).
+                  </p>
+                  <p>
+                    Breezeren kan være av valgfri smak, men skal chugges rett
+                    fra flaske.
+                  </p>
+                  <p>Shoten må ha minimum 37.5% alkohol.</p>
+                  <p>
+                    Tiden starter i det første enhet rører leppene og slutter
+                    når man har satt ned siste enhet på bord eller gulv.
+                  </p>
+                </div>
+              }
+            />
           </Routes>
         </div>
       </Router>
