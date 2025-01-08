@@ -6,6 +6,8 @@ import FormComponent from "./components/FormComponent/FormComponent";
 import PlayersComponent from "./components/PlayersComponent/PlayersComponent";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import PlayerComponent from "./components/PlayerComponent/PlayerComponent";
+import EditPlayerFormComponent from "./components/EditPlayerFormComponent/EditPlayerFormComponent";
+import EditPlayerComponent from "./components/EditPlayerComponent/EditPlayerComponent";
 
 function App() {
   return (
@@ -18,7 +20,6 @@ function App() {
             <Route path="/addchallenge" element={<FormComponent />} />
             <Route path="/players" element={<PlayersComponent />} />
             <Route path="/player/*" element={<PlayerComponent />} />
-            <Route path="*" element={<div>Page not found!</div>} />
             <Route
               path="/rules"
               element={
@@ -46,6 +47,9 @@ function App() {
                 </div>
               }
             />
+            <Route path="/editplayer" element={<EditPlayerFormComponent />} />
+            <Route path="/editplayer/*" element={<EditPlayerComponent />} />
+            <Route path="*" element={<div>Page not found!</div>} />
           </Routes>
         </div>
       </Router>

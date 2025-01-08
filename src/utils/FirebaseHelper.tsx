@@ -68,3 +68,9 @@ export const addAttemptForExistingPlayer = async (player: Player) => {
   const playerRef = ref(db, `players/${player.id}`);
   return await set(playerRef, player);
 };
+
+export const updateStatsForPlayer = async (player: Player, stats: Stat[]) => {
+  const playerRef = ref(db, `players/${player.id}`);
+  player.stats = stats;
+  return await set(playerRef, player);
+};
