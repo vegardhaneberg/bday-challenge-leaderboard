@@ -5,6 +5,7 @@ import { Player } from "../../utils/TableUtils";
 import BarComponent from "../BarComponent/BarComponent";
 import CustomInput from "../CustomComponents/Input/Input";
 import CustomButton from "../CustomComponents/Button/Button";
+import ErrorMessageDiv from "../CustomComponents/ErrorMessageDiv/ErrorMessageDiv";
 
 function EditPlayerComponent() {
   const location = useLocation();
@@ -14,6 +15,9 @@ function EditPlayerComponent() {
   const [newBongScore, setNewBongScore] = useState<number>();
   const [newBreezerScore, setNewBreezerScore] = useState<number>();
   const [newShotScore, setNewShotScore] = useState<number>();
+  const [password, setPassword] = useState<string>("");
+  const [errorMessage, setErrorMessage] = useState<string>("");
+  const [showErrorMessage, setShowErrorMessage] = useState<boolean>(false);
 
   const navigate = useNavigate();
 
@@ -25,6 +29,11 @@ function EditPlayerComponent() {
 
   function handleFormSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    if (password !== "Heisann" && password !== "heisann") {
+      setErrorMessage("Feil passord");
+      setShowErrorMessage(true);
+      return;
+    }
     if (
       newBongScore === undefined ||
       newBreezerScore === undefined ||
@@ -33,6 +42,8 @@ function EditPlayerComponent() {
       newBreezerScore === null ||
       newShotScore === null
     ) {
+      setErrorMessage("Fyll ut alle statsa");
+      setShowErrorMessage(true);
       return;
     }
 
@@ -84,6 +95,14 @@ function EditPlayerComponent() {
                   placeholder="Shot"
                   onChange={(e) => setNewShotScore(parseInt(e.target.value))}
                 />
+                <CustomInput
+                  type="text"
+                  value={password}
+                  required
+                  placeholder="Passord"
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+                {showErrorMessage && <ErrorMessageDiv text={errorMessage} />}
                 <CustomButton label="Oppdater" variant="initial" />
               </div>
             </form>

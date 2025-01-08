@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { getPlayer } from "../../utils/FirebaseHelper";
 import { Attempt, Player } from "../../utils/TableUtils";
 import CenterCroppedImage from "../CustomComponents/CenterCroppedImage/CenterCroppedImage";
@@ -7,6 +7,7 @@ import "./PlayerComponent.css";
 import GraphComponent from "../GraphComponent/GraphComponent";
 import { getBestAttempt } from "../../utils/BdayChallengeHelper";
 import BarComponent from "../BarComponent/BarComponent";
+import CustomButton from "../CustomComponents/Button/Button";
 
 function PlayerComponent() {
   const location = useLocation();
@@ -14,6 +15,7 @@ function PlayerComponent() {
   const playerId = pathParts[pathParts.length - 1];
   const [player, setPlayer] = useState<Player>();
   const [bestAttempt, setBestAttempt] = useState<Attempt>();
+  const navigate = useNavigate();
 
   useEffect(() => {
     getPlayer(playerId).then((data) => {
@@ -53,6 +55,12 @@ function PlayerComponent() {
             </div>
           )}
           <BarComponent stats={player.stats} />
+          <div style={{ marginTop: "2rem" }}>
+            <CustomButton
+              onClick={() => navigate(`/editplayer/${player.id}`)}
+              label={"Oppdater spiller"}
+            />
+          </div>
         </>
       )}
     </>

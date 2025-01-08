@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 function EditPlayerFormComponent() {
   const [playerInputName, setPlayerInputName] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
   const [errorMessage, setErrorMessage] = useState<string>("");
   const [showErrorMessage, setShowErrorMessage] = useState<boolean>(false);
 
@@ -14,14 +15,19 @@ function EditPlayerFormComponent() {
 
   function handleNameSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    getPlayerByName(playerInputName).then((data) => {
-      if (data === undefined || data === null) {
-        setErrorMessage("Fant ikke noen spiller med dette navnet");
-        setShowErrorMessage(true);
-        return;
-      }
-      navigate(`/editplayer/${data.id}`);
-    });
+    if (password === "Heisann" || password === "heisann") {
+      getPlayerByName(playerInputName).then((data) => {
+        if (data === undefined || data === null) {
+          setErrorMessage("Fant ikke noen spiller med dette navnet");
+          setShowErrorMessage(true);
+          return;
+        }
+        navigate(`/editplayer/${data.id}`);
+      });
+    } else {
+      setErrorMessage("Feil passord");
+      setShowErrorMessage(true);
+    }
   }
 
   return (
@@ -36,6 +42,13 @@ function EditPlayerFormComponent() {
               required
               placeholder="Navn"
               onChange={(e) => setPlayerInputName(e.target.value)}
+            />
+            <CustomInput
+              type="text"
+              value={password}
+              required
+              placeholder="Passord"
+              onChange={(e) => setPassword(e.target.value)}
             />
             {showErrorMessage && <ErrorMessageDiv text={errorMessage} />}
             <CustomButton label="Neste" variant="initial" />
