@@ -45,7 +45,7 @@ function PlayerComponent() {
           </h2>
           {player.attempts.length > 1 && <GraphComponent player={player} />}
           {player.attempts.length <= 1 && (
-            <div style={{ marginTop: "5rem" }}>
+            <div style={{ marginTop: "2rem" }}>
               <h3 className="player-description-small">
                 {player.name} har bare gjort ett forsøk😡
               </h3>
