@@ -36,6 +36,7 @@ function PlayerComponent() {
             player.name === "Haakon" ||
             player.name === "Daniel" ||
             player.name === "Katty" ||
+            player.name === "Hedda" ||
             player.name === "Syver" ||
             player.name === "Martin") && (
             <CenterCroppedImage imgPath={`/${player.name}.jpg`} size="15rem" />
