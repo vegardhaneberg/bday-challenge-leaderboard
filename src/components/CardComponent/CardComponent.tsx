@@ -39,6 +39,8 @@ function CardComponent(props: { player: Player; imgPath: string }) {
         player.name !== "Haakon" &&
         player.name !== "Daniel" &&
         player.name !== "Hedda" &&
+        player.name !== "Frikk" &&
+        player.name !== "Helene B" &&
         player.name !== "Martin" && (
           <img src={imgPath} className="playerImage" />
         )}
@@ -75,6 +77,12 @@ function CardComponent(props: { player: Player; imgPath: string }) {
       )}
       {player.name === "Syver" && (
         <CenterCroppedImage imgPath="Syver.jpg" size="6rem" />
+      )}
+      {player.name === "Helene B" && (
+        <CenterCroppedImage imgPath="Helene B.jpg" size="6rem" />
+      )}
+      {player.name === "Frikk" && (
+        <CenterCroppedImage imgPath="Frikk.jpg" size="6rem" />
       )}
     </div>
   );
