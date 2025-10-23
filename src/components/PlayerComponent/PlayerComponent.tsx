@@ -61,6 +61,7 @@ function PlayerComponent() {
           <div style={{ marginTop: "2rem" }}>
             <CustomButton
               onClick={() => navigate(`/editplayer/${player.id}`)}
+              variant="initial"
               label={"Oppdater spiller"}
             />
           </div>
